@@ -20,8 +20,8 @@ namespace AppMinhasCompras.Helpers
 
         public Task<List<Produto>> Update(Produto p)
         {
-            string sql = "UPDATE Produto SET Descricao = ?, Preco = ?, Quantidade = ? WHERE Id = ?";
-            return _conn.QueryAsync<Produto>(sql, p.Descricao, p.Preco, p.Quantidade, p.Id);
+            string sql = "UPDATE Produto SET Descricao = ?, Categoria = ?, Preco = ?, Quantidade = ? WHERE Id = ?";
+            return _conn.QueryAsync<Produto>(sql, p.Descricao, p.Categoria, p.Preco, p.Quantidade, p.Id);
         }
 
         public Task<int> Delete(int id)
