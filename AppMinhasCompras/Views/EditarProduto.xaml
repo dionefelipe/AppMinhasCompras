@@ -14,8 +14,17 @@
             <Entry x:Name="txt_descricao" Text="{Binding Descricao}" />
 
             <Label Text="Categoria: "/>
-            <Entry x:Name="txt_categoria" Text="{Binding Categoria}" />
-
+            <Picker x:Name="pck_categoria" SelectedItem="{Binding Categoria}" Title="Selecione a Categoria">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Alimento</x:String>
+                        <x:String>Higiene</x:String>
+                        <x:String>Limpeza</x:String>
+                        <x:String>Outros</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+           
             <Label Text="Quantidade: " />
             <Entry x:Name="txt_quantidade" Text="{Binding Quantidade}" Keyboard="Numeric" />
 

@@ -35,11 +35,12 @@ public partial class ListaProduto : ContentPage
 	{
 		try
 		{
-			Navigation.PushAsync(new Views.NovoProduto());
+	        Navigation.PushAsync(new Views.NovoProduto());
 
-		}catch (Exception ex)
+		}
+        catch (Exception ex)
 		{
-			DisplayAlert("Ops", ex.Message, "OK");
+		    DisplayAlert("Ops", ex.Message, "OK");
 		}
 
 	}
@@ -126,5 +127,40 @@ public partial class ListaProduto : ContentPage
         {
             lst_produtos.IsRefreshing = false;
         }
+    }
+    private async void pck_filtro_categoria_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            string categoriaSelecionada = pck_filtro_categoria.SelectedItem?.ToString();
+
+            if (string.IsNullOrEmpty(categoriaSelecionada) || categoriaSelecionada == "Todas")
+            {
+                lst_produtos.ItemsSource = await App.Db.GetAll();
+            }
+            else
+            {
+                lst_produtos.ItemsSource = await App.Db.SearchByCategoria(categoriaSelecionada);
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ops", ex.Message, "OK");
+        }
+
+    }
+
+    private void ToolbarItem_Clicked_2(object sender, EventArgs e)
+    {
+        try
+        {
+            Navigation.PushAsync(new Views.RelatorioPage());
+
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Ops", ex.Message, "OK");
+        }
+
     }
 }

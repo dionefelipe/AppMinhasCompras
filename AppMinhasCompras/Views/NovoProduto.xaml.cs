@@ -17,8 +17,8 @@ public partial class NovoProduto : ContentPage
 			Produto p = new Produto
             {
 				Descricao = txt_descricao.Text,
-				Categoria = txt_categoria.Text,
-				Quantidade = Convert.ToDouble(txt_quantidade.Text),
+                Categoria = pck_categoria.SelectedItem?.ToString() ?? "Outros",
+                Quantidade = Convert.ToDouble(txt_quantidade.Text),
 				Preco = Convert.ToDouble(txt_preco.Text)
 			};
 
@@ -26,8 +26,8 @@ public partial class NovoProduto : ContentPage
 			await DisplayAlert("Sucesso", "Registro Inserido", "OK");
 			await Navigation.PopAsync();
 
-
-		}catch(Exception ex)
+		}
+		catch(Exception ex)
 		{
 			await DisplayAlert("Ops", ex.Message, "ok");
 		}

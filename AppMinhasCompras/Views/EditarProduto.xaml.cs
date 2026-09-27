@@ -18,7 +18,7 @@ public partial class EditarProduto : ContentPage
             {
                 Id = produto_anexado.Id,
                 Descricao = txt_descricao.Text,
-                Categoria = txt_categoria.Text,
+                Categoria = pck_categoria.SelectedItem.ToString(),
                 Quantidade = Convert.ToDouble(txt_quantidade.Text),
                 Preco = Convert.ToDouble(txt_preco.Text)
             };

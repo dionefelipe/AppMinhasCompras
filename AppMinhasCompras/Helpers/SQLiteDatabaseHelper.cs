@@ -39,6 +39,18 @@ namespace AppMinhasCompras.Helpers
             String sql = "SELECT * FROM Produto WHERE Descricao LIKE '%" + g + "%'";
             return _conn.QueryAsync<Produto>(sql);
         }
+
+        public Task<List<Produto>> SearchByCategoria(string categoria)
+        {
+            return _conn.Table<Produto>()
+                        .Where(p => p.Categoria.ToLower().Contains(categoria.ToLower()))
+                        .ToListAsync();
+        }
+    }
+    public class RelatorioCategoria
+    {
+        public string Categoria { get; set; }
+        public double TotalGasto { get; set; }
     }
 }
 
